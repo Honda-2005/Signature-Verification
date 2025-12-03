@@ -1,36 +1,137 @@
-🖋️ Signature Verification Project (Python + OpenCV)
+# 🖋️ Signature Verification Project
 
-This project implements a signature verification system using Python and OpenCV.
-It compares an original signature with a user-submitted signature by preprocessing both images, extracting key features, and evaluating their similarity.
+A robust **Signature Verification System** built with **Python** and **OpenCV**! This project compares an original (reference) signature with a user-submitted signature using advanced image processing and feature extraction techniques. It’s ideal for educational purposes, research, or as a foundation for production verification workflows.
 
-The system performs:
+---
 
-🔹 Image Preprocessing:
+## 🚀 Features Overview
 
-Convert images to grayscale
-Apply adaptive thresholding (binarization)
-Remove noise using morphological operations
-Resize signatures to the same dimensions
+- **Image Preprocessing**  
+  Prepare both reference and submitted signature images using:
+  - Grayscale conversion
+  - Adaptive thresholding (binarization)
+  - Noise removal with morphological operations
+  - Uniform resizing for comparison
 
-🔹 Visualization:
+- **Stage-by-Stage Visualization**
+  - See each transformation step side-by-side:
+    - Original (color)
+    - Grayscale
+    - Binary
+    - Noise-cleaned
 
-The project displays all stages for both signatures:
-Original (color)
-Grayscale
-Binary
-Cleaned (noise-removed)
+- **Feature Extraction**
+  - For each cleaned signature image:
+    - Largest contour detection
+    - Contour area and perimeter calculation
+    - Extraction of Hu Moments (shape descriptors)
 
-🔹 Feature Extraction:
+- **Signature Matching**
+  - Two core similarity metrics:
+    - **SSIM** (Structural Similarity Index): pixel-wise comparison
+    - **Feature Vector Distance**: compares geometric shape descriptors
+  - Combines these scores for a final verdict: **MATCH** or **NO MATCH**
 
-From each cleaned signature, the system extracts:
-Largest contour
-Contour area
-Contour perimeter
-Hu Moments (shape descriptors)
+---
 
-🔹 Verification:
+## 📂 Project Structure
 
-Two types of comparison are used:
-SSIM (Structural Similarity Index)
-Feature vector distance (based on contour features)
-A final decision (match / no match) is made based on these metrics.
+```
+Signature-Verification/
+│
+├── main.py                 # Entry point – run signature verification
+├── signature_utils.py      # Image preprocessing & feature extraction functions
+├── verification.py         # Comparison and decision logic
+├── assets/                 # Example signature images
+├── README.md               # Project documentation
+└── requirements.txt        # Python dependencies
+```
+
+---
+
+## 🛠️ Getting Started
+
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/Honda-2005/Signature-Verification.git
+    cd Signature-Verification
+    ```
+
+2. **Install required packages**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Place signature images**
+    - Put your original and submitted signature images in the `assets/` directory.
+
+4. **Run the verification**
+    ```bash
+    python main.py --reference assets/original.png --test assets/test.png
+    ```
+
+---
+
+## 📊 How It Works
+
+1. **Preprocessing**  
+   Both images are converted to grayscale, binarized, denoised, and resized.
+
+2. **Visualization**  
+   Each stage is saved/displayed so you can inspect the transformation process.
+
+3. **Feature Extraction**  
+   The largest contour is detected, and features like contour area, perimeter, and Hu Moments are computed.
+
+4. **Verification Metrics**
+   - **SSIM:** Measures structural similarity for the overall pixel layout.
+   - **Feature Distance:** Compares extracted shape descriptors for geometric similarity.
+
+5. **Final Decision**  
+   The system combines the similarity scores to declare a **MATCH** or **NO MATCH**.
+
+---
+
+## 🧩 Dependencies
+
+- Python 3.7+
+- OpenCV (`opencv-python`)
+- NumPy
+- scikit-image (`scikit-image`)
+
+All dependencies are listed in `requirements.txt`.
+
+---
+
+## 🎓 Applications
+
+- Bank/financial document authentication
+- Automated form verification
+- Research & experimentation in image recognition
+- Educational projects
+
+---
+
+## 📝 Notes
+
+- The system works best with clean, scanned signatures on white background.
+- For noisy or low-resolution images, adjust the preprocessing parameters for optimal results.
+- Not intended for high-security production without further testing & adaptation.
+
+---
+
+## 📄 License
+
+This project is MIT Licensed.  
+Feel free to modify, extend, and use as you wish!
+
+---
+
+## 🙏 Acknowledgements
+
+- Inspired by OpenCV’s image processing capabilities
+- See [Wikipedia: Hu Moments](https://en.wikipedia.org/wiki/Image_moment) for details on shape descriptors
+
+---
+
+Happy verifying! ✍️
